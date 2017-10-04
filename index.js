@@ -11,6 +11,10 @@ app.use(function (req, res, next) {
 });
 
 app.get('/', function (req, res) {
+    res.status(200).json({ route: ["/home", "/categories"] });
+});
+
+app.get('/home', function (req, res) {
     res.status(200).json({ success: true, data: homeFile });
 });
 
