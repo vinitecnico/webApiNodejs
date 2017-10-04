@@ -1,0 +1,38 @@
+[
+    {
+        "categoryId": 1,
+        "categoryName": "Promoções",
+        "img": "assets/img/img_promo.jpg",
+        "itemNumber": 2
+    },
+    {
+        "categoryId": 1,
+        "categoryName": "Combinado 1",
+        "img": "http://sushigarden.com.br/wp-content/uploads/2012/06/bg8-slideshow1.jpg",
+        "itemNumber": 10
+    },
+    {
+        "categoryId": 2,
+        "categoryName": "Combinado 2",
+        "img": "https://userscontent2.emaze.com/images/e3834353-bad4-465f-8c6d-a4b0d55e440f/234afafa-28ca-4a6d-a5f2-27493b1c768d.jpg",
+        "itemNumber": 5
+    },
+    {
+        "categoryId": 3,
+        "categoryName": "Combinado 3",
+        "img": "http://sushigarden.com.br/wp-content/uploads/2012/06/bg8-slideshow1.jpg",
+        "itemNumber": 4
+    },
+    {
+        "categoryId": 4,
+        "categoryName": "Combinado 4",
+        "img": "http://sushigarden.com.br/wp-content/uploads/2012/06/bg8-slideshow1.jpg",
+        "itemNumber": 4
+    },
+    {
+        "categoryId": 5,
+        "categoryName": "Combinado 5",
+        "img": "http://sushigarden.com.br/wp-content/uploads/2012/06/bg8-slideshow1.jpg",
+        "itemNumber": 5
+    }
+]
