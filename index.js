@@ -18,14 +18,14 @@ app.use(function (req, res, next) {
 });
 
 app.get('/', function (req, res) {
-    res.status(200).json({ route: ["/home", "/categories"] });
+    res.status(200).json({ route: ["/api/home", "/api/categories"] });
 });
 
-app.get('/home', function (req, res) {
+app.get('/api/home', function (req, res) {
     res.status(200).json({ success: true, data: homeFile });
 });
 
-app.get('/categories', function (req, res) {
+app.get('/api/categories', function (req, res) {
     res.status(200).json({ success: true, data: categorieFile });
 });
 
