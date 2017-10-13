@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const http = require('http');
 const homeFile = require('./files/home.json');
 const categorieFile = require('./files/categories.json');
 const app = express();
@@ -7,7 +8,7 @@ const responseFormat = require('./helpers/responseFormatHelper');
 const tokenHelper = require('./helpers/tokenHelper');
 
 app.use(bodyParser.json()); // support json encoded bodies
-app.use(bodyParser.urlencoded({ extended: true })); 
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -26,6 +27,17 @@ app.get('/home', function (req, res) {
 
 app.get('/categories', function (req, res) {
     res.status(200).json({ success: true, data: categorieFile });
+});
+
+app.get('/api/cep/:cep', function (req, res) {
+    http.get('http://viacep.com.br/ws/' + req.param('cep') + '/json', (resp) => {
+        resp.setEncoding('utf8');
+        resp.on("data", function (chunk) {
+            res.status(200).json(JSON.parse(chunk));
+        });
+    }).on("error", (err) => {
+        console.log("Error: " + err.message);
+    });
 });
 
 app.post('/api/authenticate', function (req, res) {
