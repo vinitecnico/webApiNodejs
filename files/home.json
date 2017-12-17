@@ -1,5 +1,5 @@
 {
-    "promotions": [
+    "Promotions": [
         {
             "IdCardapio": 1,            
             "IdCategoria": 1,
@@ -17,7 +17,7 @@
             "Preco": 15.90
         }
     ],
-    "highlights": [
+    "Highlights": [
         {
             "IdCardapio": 3,            
             "IdCategoria": 1,
