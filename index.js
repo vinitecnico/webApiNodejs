@@ -22,11 +22,11 @@ app.get('/', function (req, res) {
 });
 
 app.get('/api/TsuHome', function (req, res) {
-    res.status(200).json({ success: true, data: homeFile });
+    res.status(200).json({ Success: true, Data: homeFile });
 });
 
 app.get('/api/categories', function (req, res) {
-    res.status(200).json({ success: true, data: categorieFile });
+    res.status(200).json({ Success: true, Data: categorieFile });
 });
 
 app.get('/api/cep/:cep', function (req, res) {
