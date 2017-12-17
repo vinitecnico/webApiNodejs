@@ -5,7 +5,7 @@
             "IdCategoria": 1,
             "NomePrato": "Temaki",
             "Descricao": "Temaki com Cream Cheese1 – Nori (Alga Japonesa), Shari (Arroz Para Sushi), Recheado com Salmão, Cream Cheese e Cebolinha.",
-            "Imagem": "http://www.sushimanadomicilio.com.br/wp-content/uploads/2016/02/cardapio-japones-temaki.jpg",            
+            "Imagem": "https://sifu.unileversolutions.com/image/en-AU/recipe-topvisual/2/1260-709/salmon-temaki-cone-50270397.jpg",            
             "Preco": 9.90
         },
         {
@@ -13,7 +13,7 @@
             "IdCategoria": 1,
             "NomePrato": "Guioza",
             "Descricao": "Enrolados de Legumes Fritos ou Assados.",
-            "Imagem": "http://www.sushimanadomicilio.com.br/wp-content/uploads/2016/02/Guioza-para-festa.jpg",            
+            "Imagem": "https://static.vix.com/pt/sites/default/files/bdm/receita/receita-de-guioza.jpg",            
             "Preco": 15.90
         }
     ],
@@ -23,7 +23,7 @@
             "IdCategoria": 1,
             "NomePrato": "Uramaki",
             "Descricao": "Arroz Para Sushi (Shari) com Gergelim por Fora, Nori (Alga Japonesa), Salmão, Cream Cheese e Cebolinha.",
-            "Imagem": "http://www.sushimanadomicilio.com.br/wp-content/uploads/2016/02/Comida-japonesa-uramaki.jpg",
+            "Imagem": "http://www.dicasonline.tv/wp-content/uploads/hosomaki-uramaki.jpg",
             "Preco": 9.90
         },
         {
@@ -31,7 +31,7 @@
             "IdCategoria": 1,
             "NomePrato": "Hot Roll",
             "Descricao": "Nori (Alga Japonesa), Shari (Arroz Para Sushi) Recheado com Salmão, Creem Cheese, Empanado e Frito.",
-            "Imagem": "http://www.sushimanadomicilio.com.br/wp-content/uploads/2016/02/Comida-oriental-hot-roll.jpg",            
+            "Imagem": "http://cozinhaemcena.com.br/wp-content/uploads/2016/10/hot-roll-veggie-capa.jpg",            
             "Preco": 12.90
         }
     ]
