@@ -1,34 +1,38 @@
 {
-    "slides": [
+    "promotions": [
         {
-            "categoriId": 1,
-            "productId": 1,
-            "img": "assets/img/img_promo.jpg",
-            "title": "Fuji - 30 peças",
-            "price": 49.90
+            "IdCardapio": 1,            
+            "IdCategoria": 1,
+            "NomePrato": "Temaki",
+            "Descricao": "Temaki com Cream Cheese1 – Nori (Alga Japonesa), Shari (Arroz Para Sushi), Recheado com Salmão, Cream Cheese e Cebolinha.",
+            "Imagem": "http://www.sushimanadomicilio.com.br/wp-content/uploads/2016/02/cardapio-japones-temaki.jpg",            
+            "Preco": 9.90
         },
         {
-            "categoriId": 1,
-            "productId": 1,
-            "img": "assets/img/img_promo.jpg",
-            "title": "Fuji - 15 peças",
-            "price": 25.90
+            "IdCardapio": 2,            
+            "IdCategoria": 1,
+            "NomePrato": "Guioza",
+            "Descricao": "Enrolados de Legumes Fritos ou Assados.",
+            "Imagem": "http://www.sushimanadomicilio.com.br/wp-content/uploads/2016/02/Guioza-para-festa.jpg",            
+            "Preco": 15.90
         }
     ],
     "highlights": [
         {
-            "categoriId": 1,
-            "productId": 1,
-            "img": "assets/img/img_detaque1.jpg",
-            "title": "Tsy Doy",
-            "price": 29.90
+            "IdCardapio": 3,            
+            "IdCategoria": 1,
+            "NomePrato": "Uramaki",
+            "Descricao": "Arroz Para Sushi (Shari) com Gergelim por Fora, Nori (Alga Japonesa), Salmão, Cream Cheese e Cebolinha.",
+            "Imagem": "http://www.sushimanadomicilio.com.br/wp-content/uploads/2016/02/Comida-japonesa-uramaki.jpg",
+            "Preco": 9.90
         },
         {
-            "categoriId": 1,
-            "productId": 1,
-            "img": "assets/img/img_detaque2.jpg",
-            "title": "Jow Geléia",
-            "price": 14.90
+            "IdCardapio": 4,            
+            "IdCategoria": 1,
+            "NomePrato": "Hot Roll",
+            "Descricao": "Nori (Alga Japonesa), Shari (Arroz Para Sushi) Recheado com Salmão, Creem Cheese, Empanado e Frito.",
+            "Imagem": "http://www.sushimanadomicilio.com.br/wp-content/uploads/2016/02/Comida-oriental-hot-roll.jpg",            
+            "Preco": 12.90
         }
     ]
 }

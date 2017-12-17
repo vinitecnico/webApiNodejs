@@ -21,7 +21,7 @@ app.get('/', function (req, res) {
     res.status(200).json({ route: ["/api/home", "/api/categories"] });
 });
 
-app.get('/api/home', function (req, res) {
+app.get('/api/TsuHome', function (req, res) {
     res.status(200).json({ success: true, data: homeFile });
 });
 
