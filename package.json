@@ -12,6 +12,9 @@
   "dependencies": {
     "body-parser": "^1.18.2",
     "express": "^4.16.1",
+    "firebase": "^4.8.1",
+    "firebase-admin": "^5.6.0",
+    "firebase-functions": "^0.7.5",
     "http": "0.0.0",
     "jsonwebtoken": "^8.1.0",
     "lodash": "^4.17.4",

@@ -7,6 +7,15 @@ const app = express();
 const responseFormat = require('./helpers/responseFormatHelper');
 const tokenHelper = require('./helpers/tokenHelper');
 
+var admin = require("firebase-admin");
+
+var serviceAccount = require("./files/myapp-101089-firebase-adminsdk-58ito-ef81262c69.json");
+
+admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount),
+    databaseURL: "https://myapp-101089.firebaseio.com"
+});
+
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -27,6 +36,39 @@ app.get('/api/TsuHome', function (req, res) {
 
 app.get('/api/categories', function (req, res) {
     res.status(200).json({ Success: true, Data: categorieFile });
+});
+
+app.get('/api/firebase', function (req, res) {
+    var registrationTokens = [
+        "dfX60OyQeJw:APA91bFLFBlJJ_wk2PE7FtAhiG_4wdqCrCcNJOvpTCwFO1c5bsJxwg-EvO_AhIan3bqST9LOBvHfU2IDNfQNkAjSGeP7sbzcHrQd6G-mfrNRxWdkkUe8RWXDQr-yoYk0KNtClbvW4VDZ"
+    ];
+
+    var payload = {
+        notification: {
+            title: "This is a Notification",
+            body: "This is the body of the notification message. ;(",
+            message: "This is the body of the notification message. ;)"
+        }
+    };
+
+    var options = {
+        priority: "high",
+        timeToLive: 60 * 60 * 24
+    };
+
+    // Send a message to the devices corresponding to the provided
+    // registration tokens.
+    admin.messaging().sendToDevice(registrationTokens, payload, options)
+        .then(function (response) {
+            // See the MessagingDevicesResponse reference documentation for
+            // the contents of response.
+            console.log("Successfully sent message:", response);
+        })
+        .catch(function (error) {
+            console.log("Error sending message:", error);
+        });
+
+    res.status(200).json({ Success: true, Data: payload });
 });
 
 app.get('/api/cep/:cep', function (req, res) {
