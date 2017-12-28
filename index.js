@@ -48,6 +48,9 @@ app.get('/api/firebase', function (req, res) {
             title: "This is a Notification",
             body: "This is the body of the notification message. ;(",
             message: "This is the body of the notification message. ;)"
+        },
+        data: {
+            message: 'This is the body of the notification message'
         }
     };
 
