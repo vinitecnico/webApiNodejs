@@ -5,13 +5,13 @@ var config = require('../config');
 var Q = require('q');
 
 class tokenHelper {
-    static create(app) {
-        return jwt.sign(config, app.get('tokenSecret'));
+    static create(tokenData) {
+        return jwt.sign(tokenData, config.tokenSecret);
     }
 
-    static validate(app, token) {
+    static validate(tokenData, token) {
         const defer = Q.defer();
-        jwt.verify(token, app.get('tokenSecret'), function (err, decoded) {
+        jwt.verify(token, config.tokenSecret, function (err, decoded) {
             if (err) {
                 defer.resolve(false);
             } else {

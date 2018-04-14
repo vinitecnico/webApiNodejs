@@ -1,17 +1,12 @@
 'use strict';
-let MongoClient = require('mongodb').MongoClient;
+const mongoose = require('mongoose');
 let Q = require('q');
 const config = require('../config');
 
 module.exports = {
 
-    connect: () => {
-        const defer = Q.defer();
-        MongoClient.connect(config.database, function (err, db) {
-            console.log("Connected correctly to server");
-            defer.resolve(db);
-        });
-        return defer.promise;
+    connect: () => {        
+        return mongoose.connect(config.database);
     },
     close: (db) => {
         db.close();

@@ -11,36 +11,28 @@ module.exports = function (app) {
         var email = req.param('email');
         var password = req.param('password');
         const userMiddleware = new UserMiddleware();
-        userMiddleware.get(email, password).then(function (response) {
-            res.status(200).json(response);
-        }).catch(function (e) {
-            res.status(500, {
-                error: e
+        userMiddleware.login(email, password)
+            .then(function (response) {
+                res.status(200).json(response);
+            })
+            .catch(function (e) {
+                res.status(500).json(e);
             });
-        });
     });
 
     app.post('/api/createUser', function (req, res) {
-        //const token = req.body.token || null;
-        //tokenHelper.validate(app, token).then(response => {
-        //if (response) {
         const user = req.body;
 
         //const user = req.body.password;
         const userMiddleware = new UserMiddleware();
-        userMiddleware.post(user).then(function (response) {
-            res.status(200).json(response);
-        }).catch(function (e) {
-            res.status(500, {
-                error: e
+        userMiddleware.post(user)
+            .then(function (response) {
+                res.status(200).json(response);
+            })
+            .catch(function (e) {
+                res.status(500).json({
+                    error: e
+                });
             });
-        });
-        // } else {
-        //     return res.status(403).send({
-        //         success: false,
-        //         message: 'No token provided.'
-        //     });
-        // }
-        //});
     });
 };
