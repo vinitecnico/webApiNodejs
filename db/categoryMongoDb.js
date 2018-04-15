@@ -54,7 +54,7 @@ class categoryMongoDb {
         mongodb.connect()
             .then(db => {
                 const filter = status != 'all' ? { status: status } : null;
-                var query = db.model('categories').find(filter).sort('-categoryName');
+                var query = db.model('categories').find(filter).sort('categoryName');
                 query.skip(page * take).limit(take).exec('find', function (err, result) {
                     if (err) {
                         defer.reject(err.message);
