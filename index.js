@@ -1,7 +1,5 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const homeFile = require('./files/home.json');
-const categorieFile = require('./files/categories.json');
 const app = express();
 const responseFormat = require('./helpers/responseFormatHelper');
 const tokenHelper = require('./helpers/tokenHelper');
@@ -29,13 +27,6 @@ app.get('/', function (req, res) {
     res.status(200).json({ route: ["/api/home", "/api/categories"] });
 });
 
-app.get('/api/TsuHome', function (req, res) {
-    res.status(200).json({ Success: true, Data: homeFile });
-});
-
-app.get('/api/categories', function (req, res) {
-    res.status(200).json({ Success: true, Data: categorieFile });
-});
 
 app.get('/api/firebase', function (req, res) {
     var registrationTokens = [
@@ -85,6 +76,7 @@ app.post('/api/authenticate', function (req, res) {
     }
 });
 
+const homeApi = require('./api/homeApi')(app);
 const userApi = require('./api/userApi')(app);
 const zipCodeApi = require('./api/zipCodeApi')(app);
 const categoryApi = require('./api/categoryApi')(app);
