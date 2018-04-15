@@ -12,7 +12,7 @@ class homeMongoDb {
             .then(db => {
                 let homeData = {
                     slides: [],
-                    Highlights: []
+                    highlights: []
                 };
 
                 var query = db.model('products').find({ hasSlide: true, status: true }).sort('productName');
@@ -26,7 +26,7 @@ class homeMongoDb {
                             if (err) {
                                 defer.reject(err.message);
                             } else {
-                                homeData.Highlights = result;
+                                homeData.highlights = result;
                                 query = db.model('products').find({ hasHighlight: true, status: true }).sort('productName');
                                 defer.resolve(homeData);
                             }
