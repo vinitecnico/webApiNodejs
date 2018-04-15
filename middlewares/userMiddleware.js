@@ -3,7 +3,7 @@ const responseFormat = require('../helpers/responseFormatHelper');
 const UserMongoDb = require('../db/userMongoDb');
 const Q = require('q');
 
-class timeMiddleware {
+class userMiddleware {
 
 	constructor() {
 
@@ -65,4 +65,4 @@ class timeMiddleware {
 	}
 }
 
-module.exports = timeMiddleware;
+module.exports = userMiddleware;

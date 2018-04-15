@@ -1,6 +1,5 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const http = require('http');
 const homeFile = require('./files/home.json');
 const categorieFile = require('./files/categories.json');
 const app = express();
@@ -74,16 +73,6 @@ app.get('/api/firebase', function (req, res) {
     res.status(200).json({ Success: true, Data: payload });
 });
 
-app.get('/api/cep/:cep', function (req, res) {
-    http.get('http://viacep.com.br/ws/' + req.param('cep') + '/json', (resp) => {
-        resp.setEncoding('utf8');
-        resp.on("data", function (chunk) {
-            res.status(200).json(JSON.parse(chunk));
-        });
-    }).on("error", (err) => {
-        console.log("Error: " + err.message);
-    });
-});
 
 app.post('/api/authenticate', function (req, res) {
     if (config.user == req.body.user && config.pwd == req.body.pwd) {
@@ -97,6 +86,7 @@ app.post('/api/authenticate', function (req, res) {
 });
 
 const userApi = require('./api/userApi')(app);
+const zipCodeApi = require('./api/zipCodeApi')(app);
 
 app.set('port', (process.env.PORT || 5000));
 

@@ -4,10 +4,10 @@ const Q = require('q');
 const moment = require('moment');
 const _ = require('lodash');
 const md5 = require('md5');
-const userModel = require('../schema/userSchema');
+const userSchema = require('../schema/userSchema');
 const tokenHelper = require('../helpers/tokenHelper');
 
-class timeMongoDb {
+class userMongoDb {
 
     constructor() {
 
@@ -21,7 +21,7 @@ class timeMongoDb {
                 user.updated_at = new moment().toDate();
                 user.password = md5(user.password);
                 user.token = tokenHelper.create(user);
-                var userDb = new userModel(user);
+                var userDb = new userSchema(user);
                 userDb.save(function (error, userSave) {
                     if (error) {
                         defer.reject(error.message);
@@ -68,11 +68,23 @@ class timeMongoDb {
         const defer = Q.defer();
         mongodb.connect()
             .then(db => {
-                db.model('users').findOne({ email: email, password: password }, (err, result) => {
-                    if (err || !result) {
+                db.model('users').findOne({ email: email, password: password }, (err, user) => {
+                    if (err || !user) {
                         defer.reject('Invalid Username or Password!');
                     } else {
-                        defer.resolve(result.token);
+                        let newData = {
+                            name: user.name,
+                            email: user.email,
+                            updated_at: new moment().toDate()
+                        };
+                        newData.token = tokenHelper.create(newData);
+                        db.model('users').findOneAndUpdate({ _id: user._id }, newData, { upsert: true }, function (error, userSave) {
+                            if (error || !userSave) {
+                                defer.reject(err.message);
+                            } else {
+                                defer.resolve(newData.token);
+                            }
+                        });
                     }
                 });
             });
@@ -97,4 +109,4 @@ class timeMongoDb {
     }
 }
 
-module.exports = timeMongoDb;
+module.exports = userMongoDb;
