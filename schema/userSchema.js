@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var userSchema = new Schema({ 
+var userSchema = new Schema({
   name: String,
   birthday: Date,
   cpf: { type: String, required: true, unique: true },
@@ -17,8 +17,8 @@ var userSchema = new Schema({
   complement: String,
   subscribeNews: Boolean,
   token: String,
-  created_at: Date,
-  updated_at: Date
+  created_at: { type: Date, default: Date.now },
+  updated_at: { type: Date, default: Date.now }
 });
 
 module.exports = mongoose.model('users', userSchema)

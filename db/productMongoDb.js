@@ -1,3 +1,6 @@
+'use strict';
+const mongodb = require('./mongoDb');
+const Q = require('q');
 const moment = require('moment');
 const productSchema = require('../schema/productSchema');
 
@@ -9,9 +12,6 @@ class productMongoDb {
         const defer = Q.defer();
         mongodb.connect()
             .then(db => {
-                product.created_at = new moment().toDate();
-                product.updated_at = new moment().toDate();
-
                 var productDb = new productSchema(product);
                 productDb.save(function (error, result) {
                     if (error) {

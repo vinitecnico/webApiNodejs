@@ -7,7 +7,7 @@ var productSchema = new Schema({
     description: String,
     img: { type: String, required: true },
     status: Boolean,
-    price: { type: String, required: true },
+    price: { type: Number, required: true },
     hasSlide: Boolean,
     hasHighlight: Boolean,
     created_at: { type: Date, default: Date.now },

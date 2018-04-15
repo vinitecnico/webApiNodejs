@@ -10,7 +10,7 @@ module.exports = function (app) {
     app.post('/api/product', function (req, res) {
         const product = req.body;
         const productMiddleware = new ProductMiddleware();
-        productMiddleware.insert(category)
+        productMiddleware.insert(product)
             .then(function (response) {
                 res.status(200).json(response);
             })
