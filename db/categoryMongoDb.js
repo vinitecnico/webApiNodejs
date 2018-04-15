@@ -65,6 +65,21 @@ class categoryMongoDb {
             });
         return defer.promise;
     }
+
+    getById(id) {
+        const defer = Q.defer();
+        mongodb.connect()
+            .then(db => {
+                db.model('categories').findOne({_id: id}, (err, result) => {
+                    if (err || !result) {
+                        defer.reject('Invalid token!');
+                    } else {
+                        defer.resolve(result);
+                    }
+                });
+            });
+        return defer.promise;
+    }
 }
 
 module.exports = categoryMongoDb;

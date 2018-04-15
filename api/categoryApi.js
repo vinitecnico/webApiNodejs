@@ -21,6 +21,18 @@ module.exports = function (app) {
             });
     });
 
+    app.get('/api/category/:id', (req, res) => {
+        const id = req.param('id');
+        const categoryMiddleware = new CategoryMiddleware();
+        categoryMiddleware.getById(id)
+            .then(function (response) {
+                res.status(200).json(response);
+            })
+            .catch(function (e) {
+                res.status(500).json(e);
+            });
+    });
+
     app.post('/api/category', function (req, res) {
         const category = req.body;
         const categoryMiddleware = new CategoryMiddleware();

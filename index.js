@@ -88,6 +88,7 @@ app.post('/api/authenticate', function (req, res) {
 const userApi = require('./api/userApi')(app);
 const zipCodeApi = require('./api/zipCodeApi')(app);
 const categoryApi = require('./api/categoryApi')(app);
+const productApi = require('./api/productApi')(app);
 
 app.set('port', (process.env.PORT || 5000));
 
