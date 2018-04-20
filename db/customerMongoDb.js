@@ -4,10 +4,10 @@ const Q = require('q');
 const moment = require('moment');
 const _ = require('lodash');
 const md5 = require('md5');
-const userSchema = require('../schema/userSchema');
+const CustomerSchema = require('../schema/customerSchema');
 const tokenHelper = require('../helpers/tokenHelper');
 
-class userMongoDb {
+class customerMongoDb {
 
     constructor() {
 
@@ -21,8 +21,8 @@ class userMongoDb {
                 user.updated_at = new moment().toDate();
                 user.password = md5(user.password);
                 user.token = tokenHelper.create(user);
-                var userDb = new userSchema(user);
-                userDb.save(function (error, userSave) {
+                var customerDb = new CustomerSchema(user);
+                customerDb.save(function (error, userSave) {
                     if (error) {
                         defer.reject(error.message);
                     } else {
@@ -52,7 +52,7 @@ class userMongoDb {
                     updated_at: new moment().toDate()
                 };
 
-                db.model('users').findOneAndUpdate({ token: token }, newData, { upsert: true }, function (err, userSave) {
+                db.model('customer').findOneAndUpdate({ token: token }, newData, { upsert: true }, function (err, userSave) {
                     if (err || !userSave) {
                         defer.reject(err.message);
                     } else {
@@ -68,7 +68,7 @@ class userMongoDb {
         const defer = Q.defer();
         mongodb.connect()
             .then(db => {
-                db.model('users').findOne({ email: email, password: password }, (err, user) => {
+                db.model('customer').findOne({ email: email, password: password }, (err, user) => {
                     if (err || !user) {
                         defer.reject('Invalid Username or Password!');
                     } else {
@@ -78,7 +78,7 @@ class userMongoDb {
                             updated_at: new moment().toDate()
                         };
                         newData.token = tokenHelper.create(newData);
-                        db.model('users').findOneAndUpdate({ _id: user._id }, newData, { upsert: true }, function (error, userSave) {
+                        db.model('customer').findOneAndUpdate({ _id: user._id }, newData, { upsert: true }, function (error, userSave) {
                             if (error || !userSave) {
                                 defer.reject(err.message);
                             } else {
@@ -95,7 +95,7 @@ class userMongoDb {
         const defer = Q.defer();
         mongodb.connect()
             .then(db => {
-                db.model('users').findOne({ token: token }, (err, result) => {
+                db.model('customer').findOne({ token: token }, (err, result) => {
                     if (err || !result) {
                         defer.reject('Invalid token!');
                     } else {
@@ -109,4 +109,4 @@ class userMongoDb {
     }
 }
 
-module.exports = userMongoDb;
+module.exports = customerMongoDb;

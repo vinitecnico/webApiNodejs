@@ -1,9 +1,9 @@
 'use strict';
 const responseFormat = require('../helpers/responseFormatHelper');
-const UserMongoDb = require('../db/userMongoDb');
+const CustomerMongoDb = require('../db/customerMongoDb');
 const Q = require('q');
 
-class userMiddleware {
+class customerMiddleware {
 
 	constructor() {
 
@@ -11,8 +11,8 @@ class userMiddleware {
 
 	getByToken(token) {
 		const defer = Q.defer();
-		const userMongoDb = new UserMongoDb();
-		userMongoDb.getByToken(token)
+		const customerMongoDb = new CustomerMongoDb();
+		customerMongoDb.getByToken(token)
 			.then(response => {
 				defer.resolve(responseFormat.success(response));
 			})
@@ -24,8 +24,8 @@ class userMiddleware {
 
 	login(email, password) {
 		const defer = Q.defer();
-		const userMongoDb = new UserMongoDb();
-		userMongoDb.login(email, password)
+		const customerMongoDb = new CustomerMongoDb();
+		customerMongoDb.login(email, password)
 			.then(response => {
 				defer.resolve(responseFormat.success(response));
 			})
@@ -38,8 +38,8 @@ class userMiddleware {
 
 	insert(user) {
 		const defer = Q.defer();
-		const userMongoDb = new UserMongoDb();
-		userMongoDb.insert(user)
+		const customerMongoDb = new CustomerMongoDb();
+		customerMongoDb.insert(user)
 			.then(response => {
 				defer.resolve(responseFormat.success(response));
 			})
@@ -52,8 +52,8 @@ class userMiddleware {
 
 	update(token, user) {
 		const defer = Q.defer();
-		const userMongoDb = new UserMongoDb();
-		userMongoDb.update(token, user)
+		const customerMongoDb = new CustomerMongoDb();
+		customerMongoDb.update(token, user)
 			.then(response => {
 				defer.resolve(responseFormat.success(response));
 			})
@@ -65,4 +65,4 @@ class userMiddleware {
 	}
 }
 
-module.exports = userMiddleware;
+module.exports = customerMiddleware;

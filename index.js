@@ -77,7 +77,7 @@ app.post('/api/authenticate', function (req, res) {
 });
 
 const homeApi = require('./api/homeApi')(app);
-const userApi = require('./api/userApi')(app);
+const customerApi = require('./api/customerApi')(app);
 const zipCodeApi = require('./api/zipCodeApi')(app);
 const categoryApi = require('./api/categoryApi')(app);
 const productApi = require('./api/productApi')(app);

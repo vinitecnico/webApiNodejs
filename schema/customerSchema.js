@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var userSchema = new Schema({
+var customerSchema = new Schema({
   name: String,
   birthday: Date,
   cpf: { type: String, required: true, unique: true },
@@ -21,4 +21,4 @@ var userSchema = new Schema({
   updated_at: { type: Date, default: Date.now }
 });
 
-module.exports = mongoose.model('users', userSchema)
+module.exports = mongoose.model('customer', customerSchema)
