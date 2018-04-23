@@ -81,6 +81,7 @@ const customerApi = require('./api/customerApi')(app);
 const zipCodeApi = require('./api/zipCodeApi')(app);
 const categoryApi = require('./api/categoryApi')(app);
 const productApi = require('./api/productApi')(app);
+const paymentApi = require('./api/paymentApi')(app);
 
 app.set('port', (process.env.PORT || 5000));
 

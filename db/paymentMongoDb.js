@@ -2,18 +2,21 @@
 const mongodb = require('./mongoDb');
 const Q = require('q');
 const moment = require('moment');
-const productSchema = require('../schema/productSchema');
+const paymentSchema = require('../schema/paymentSchema');
 
-class productMongoDb {
+class paymentMongoDb {
 
     constructor() { }
 
-    insert(product) {
+    insert(payment) {
         const defer = Q.defer();
         mongodb.connect()
             .then(db => {
-                var productDb = new productSchema(product);
-                productDb.save(function (error, result) {
+                payment.created_at = new moment().toDate();
+                payment.updated_at = new moment().toDate();
+
+                var paymentDb = new paymentSchema(payment);
+                paymentDb.save(function (error, result) {
                     if (error) {
                         defer.reject(error.message);
                     } else {
@@ -24,34 +27,35 @@ class productMongoDb {
         return defer.promise;
     }
 
-    update(id, product) {
+    update(id, payment) {
         const defer = Q.defer();
         mongodb.connect()
             .then(db => {
-                product.updated_at = new moment().toDate()
+                const newData = {
+                    name: payment.name,
+                    img: payment.img,
+                    status: payment.status,
+                    updated_at: new moment().toDate()
+                };
 
-                db.model('products').findOneAndUpdate({ _id: id }, product, { upsert: true }, function (err, result) {
+                db.model('payment').findOneAndUpdate({ _id: id }, newData, { upsert: true }, function (err, result) {
                     if (err || !result) {
                         defer.reject(err.message);
                     } else {
-                        defer.resolve(product);
+                        defer.resolve(newData);
                     }
                 });
             });
         return defer.promise;
     }
 
-    getAll(categoryId, status, page, take) {
+    getAll(status) {
         const defer = Q.defer();
         mongodb.connect()
             .then(db => {
-                let filter = { categoryId: categoryId };
-                if (status != 'all') {
-                    filter.status = status;
-                }
-
-                var query = db.model('products').find(filter).sort('productName');
-                query.skip(page * take).limit(take).exec('find', function (err, result) {
+                const filter = status != 'all' ? { status: status } : null;
+                var query = db.model('payment').find(filter).sort('name');
+                query.exec('find', function (err, result) {
                     if (err) {
                         defer.reject(err.message);
                     } else {
@@ -66,7 +70,7 @@ class productMongoDb {
         const defer = Q.defer();
         mongodb.connect()
             .then(db => {
-                db.model('products').findOne({_id: id}, (err, result) => {
+                db.model('payment').findOne({_id: id}, (err, result) => {
                     if (err || !result) {
                         defer.reject('Invalid id!');
                     } else {
@@ -76,6 +80,7 @@ class productMongoDb {
             });
         return defer.promise;
     }
+
 }
 
-module.exports = productMongoDb;
+module.exports = paymentMongoDb;

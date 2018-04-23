@@ -72,7 +72,7 @@ class categoryMongoDb {
             .then(db => {
                 db.model('categories').findOne({_id: id}, (err, result) => {
                     if (err || !result) {
-                        defer.reject('Invalid token!');
+                        defer.reject('Invalid id!');
                     } else {
                         defer.resolve(result);
                     }

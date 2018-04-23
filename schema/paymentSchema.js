@@ -1,13 +1,13 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var categorySchema = new Schema({
-    categoryName: { type: String, required: true },
-    img: { type: String, required: true },
+var paymentSchema = new Schema({
+    name: { type: String, required: true },
+    img: String,
     status: Boolean,
     userId: String,
     created_at: { type: Date, default: Date.now },
     updated_at: { type: Date, default: Date.now }
 });
 
-module.exports = mongoose.model('categories', categorySchema)
+module.exports = mongoose.model('payment', paymentSchema)

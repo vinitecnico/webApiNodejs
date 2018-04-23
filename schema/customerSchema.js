@@ -17,6 +17,7 @@ var customerSchema = new Schema({
   complement: String,
   subscribeNews: Boolean,
   token: String,
+  userId: String,
   created_at: { type: Date, default: Date.now },
   updated_at: { type: Date, default: Date.now }
 });
