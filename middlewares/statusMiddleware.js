@@ -1,15 +1,15 @@
 'use strict';
 const responseFormat = require('../helpers/responseFormatHelper');
-const PaymentMongoDb = require('../db/paymentMongoDb');
+const StatusMongoDb = require('../db/statusMongoDb');
 const Q = require('q');
 
-class paymentMiddleware {
+class statusMiddleware {
     constructor() { }
 
-    insert(payment) {
+    insert(status) {
         const defer = Q.defer();
-        const paymentMongoDb = new PaymentMongoDb();
-        paymentMongoDb.insert(payment)
+        const statusMongoDb = new StatusMongoDb();
+        statusMongoDb.insert(status)
             .then(response => {
                 defer.resolve(responseFormat.success(response));
             })
@@ -20,10 +20,10 @@ class paymentMiddleware {
         return defer.promise;
     }
 
-    update(id, payment) {
+    update(id, status) {
         const defer = Q.defer();
-        const paymentMongoDb = new PaymentMongoDb();
-        paymentMongoDb.update(id, payment)
+        const statusMongoDb = new StatusMongoDb();
+        statusMongoDb.update(id, status)
             .then(response => {
                 defer.resolve(responseFormat.success(response));
             })
@@ -34,10 +34,10 @@ class paymentMiddleware {
         return defer.promise;
     }
 
-    getAll(status) {
+    getAll() {
         const defer = Q.defer();
-        const paymentMongoDb = new PaymentMongoDb();
-        paymentMongoDb.getAll(status)
+        const statusMongoDb = new StatusMongoDb();
+        statusMongoDb.getAll()
             .then(response => {
                 defer.resolve(responseFormat.success(response));
             })
@@ -50,8 +50,8 @@ class paymentMiddleware {
 
     getById(id) {
         const defer = Q.defer();
-        const paymentMongoDb = new PaymentMongoDb();
-        paymentMongoDb.getById(id)
+        const statusMongoDb = new StatusMongoDb();
+        statusMongoDb.getById(id)
             .then(response => {
                 defer.resolve(responseFormat.success(response));
             })
@@ -63,4 +63,4 @@ class paymentMiddleware {
     }
 }
 
-module.exports = paymentMiddleware;
+module.exports = statusMiddleware;

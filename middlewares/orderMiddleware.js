@@ -1,15 +1,15 @@
 'use strict';
 const responseFormat = require('../helpers/responseFormatHelper');
-const PaymentMongoDb = require('../db/paymentMongoDb');
+const OrderMongoDb = require('../db/orderMongoDb');
 const Q = require('q');
 
-class paymentMiddleware {
+class orderMiddleware {
     constructor() { }
 
-    insert(payment) {
+    insert(order) {
         const defer = Q.defer();
-        const paymentMongoDb = new PaymentMongoDb();
-        paymentMongoDb.insert(payment)
+        const orderMongoDb = new OrderMongoDb();
+        orderMongoDb.insert(order)
             .then(response => {
                 defer.resolve(responseFormat.success(response));
             })
@@ -20,10 +20,10 @@ class paymentMiddleware {
         return defer.promise;
     }
 
-    update(id, payment) {
+    update(id, order) {
         const defer = Q.defer();
-        const paymentMongoDb = new PaymentMongoDb();
-        paymentMongoDb.update(id, payment)
+        const orderMongoDb = new OrderMongoDb();
+        orderMongoDb.update(id, order)
             .then(response => {
                 defer.resolve(responseFormat.success(response));
             })
@@ -34,10 +34,10 @@ class paymentMiddleware {
         return defer.promise;
     }
 
-    getAll(status) {
+    getAll(statusId, paymentId, initialDate, endDate) {
         const defer = Q.defer();
-        const paymentMongoDb = new PaymentMongoDb();
-        paymentMongoDb.getAll(status)
+        const orderMongoDb = new OrderMongoDb();
+        orderMongoDb.getAll(statusId, paymentId, initialDate, endDate)
             .then(response => {
                 defer.resolve(responseFormat.success(response));
             })
@@ -50,8 +50,8 @@ class paymentMiddleware {
 
     getById(id) {
         const defer = Q.defer();
-        const paymentMongoDb = new PaymentMongoDb();
-        paymentMongoDb.getById(id)
+        const orderMongoDb = new OrderMongoDb();
+        orderMongoDb.getById(id)
             .then(response => {
                 defer.resolve(responseFormat.success(response));
             })
@@ -63,4 +63,4 @@ class paymentMiddleware {
     }
 }
 
-module.exports = paymentMiddleware;
+module.exports = orderMiddleware;

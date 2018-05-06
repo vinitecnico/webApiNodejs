@@ -3,10 +3,7 @@ var Schema = mongoose.Schema;
 
 var orderSchema = new Schema({
     orderId: { type: Number, required: true, unique: true },
-    status: {
-        _id: String,
-        name: String,
-    },
+    statusId: { type: String, required: true },
     userId: { type: String, required: true },
     zipCode: String,
     adress: String,
@@ -15,10 +12,7 @@ var orderSchema = new Schema({
     city: String,
     state: String,
     complement: String,
-    payment: {
-        _id: { type: String, required: true },
-        name: { type: String, required: true },
-    },
+    paymentId: { type: String, required: true },
     description: String,
     //troco
     change: Number,
