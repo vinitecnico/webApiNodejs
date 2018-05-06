@@ -82,4 +82,4 @@ class statusMongoDb {
 
 }
 
-module.exports = paymentMongoDb;
+module.exports = statusMongoDb;
