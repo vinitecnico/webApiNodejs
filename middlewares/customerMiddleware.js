@@ -22,6 +22,19 @@ class customerMiddleware {
 		return defer.promise;
 	}
 
+	getAll() {
+		const defer = Q.defer();
+		const customerMongoDb = new CustomerMongoDb();
+		customerMongoDb.getAll()
+			.then(response => {
+				defer.resolve(responseFormat.success(response));
+			})
+			.catch(error => {
+				defer.reject(responseFormat.error(error));
+			});
+		return defer.promise;
+	}
+
 	login(email, password) {
 		const defer = Q.defer();
 		const customerMongoDb = new CustomerMongoDb();

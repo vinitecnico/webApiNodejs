@@ -107,6 +107,23 @@ class customerMongoDb {
             });
         return defer.promise;
     }
+
+    getAll() {
+        const defer = Q.defer();
+        mongodb.connect()
+            .then(db => {
+                db.model('customer').find({}, (err, result) => {
+                    if (err || !result) {
+                        defer.reject('Invalid token!');
+                    } else {
+                        const userItem = _.pick(result, ['name', 'birthday', 'cpf', 'phone', 'email', 'zipCode', 'adress', 'adressNumber',
+                            'neighborhood', 'city', 'state', 'complement', 'subscribeNews', 'token']);
+                        defer.resolve(userItem);
+                    }
+                });
+            });
+        return defer.promise;
+    }
 }
 
 module.exports = customerMongoDb;

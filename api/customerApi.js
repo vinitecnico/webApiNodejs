@@ -32,6 +32,17 @@ module.exports = function (app) {
             });
     });
 
+    app.get('/api/customer', function (req, res) {
+        const customerMiddleware = new CustomerMiddleware();
+        customerMiddleware.getAll()
+            .then(function (response) {
+                res.status(200).json(response);
+            })
+            .catch(function (e) {
+                res.status(500).json(e);
+            });
+    });
+
     app.post('/api/customer', function (req, res) {
         const user = req.body;
         const customerMiddleware = new CustomerMiddleware();
