@@ -52,7 +52,7 @@ class customerMongoDb {
                     updated_at: new moment().toDate()
                 };
 
-                db.model('customer').findOneAndUpdate({ token: token }, newData, { upsert: true }, function (err, userSave) {
+                db.model('customers').findOneAndUpdate({ token: token }, newData, { upsert: true }, function (err, userSave) {
                     if (err || !userSave) {
                         defer.reject(err.message);
                     } else {
@@ -68,7 +68,7 @@ class customerMongoDb {
         const defer = Q.defer();
         mongodb.connect()
             .then(db => {
-                db.model('customer').findOne({ email: email, password: password }, (err, user) => {
+                db.model('customers').findOne({ email: email, password: password }, (err, user) => {
                     if (err || !user) {
                         defer.reject('Invalid Username or Password!');
                     } else {
@@ -78,7 +78,7 @@ class customerMongoDb {
                             updated_at: new moment().toDate()
                         };
                         newData.token = tokenHelper.create(newData);
-                        db.model('customer').findOneAndUpdate({ _id: user._id }, newData, { upsert: true }, function (error, userSave) {
+                        db.model('customers').findOneAndUpdate({ _id: user._id }, newData, { upsert: true }, function (error, userSave) {
                             if (error || !userSave) {
                                 defer.reject(err.message);
                             } else {
@@ -95,7 +95,7 @@ class customerMongoDb {
         const defer = Q.defer();
         mongodb.connect()
             .then(db => {
-                db.model('customer').findOne({ token: token }, (err, result) => {
+                db.model('customers').findOne({ token: token }, (err, result) => {
                     if (err || !result) {
                         defer.reject('Invalid token!');
                     } else {
@@ -112,13 +112,11 @@ class customerMongoDb {
         const defer = Q.defer();
         mongodb.connect()
             .then(db => {
-                db.model('customer').find({}, (err, result) => {
+                db.model('customers').find({}, (err, result) => {
                     if (err || !result) {
                         defer.reject('Invalid token!');
                     } else {
-                        const userItem = _.pick(result, ['name', 'birthday', 'cpf', 'phone', 'email', 'zipCode', 'adress', 'adressNumber',
-                            'neighborhood', 'city', 'state', 'complement', 'subscribeNews', 'token']);
-                        defer.resolve(userItem);
+                        defer.resolve(result);
                     }
                 });
             });

@@ -22,4 +22,4 @@ var customerSchema = new Schema({
   updated_at: { type: Date, default: Date.now }
 });
 
-module.exports = mongoose.model('customer', customerSchema)
+module.exports = mongoose.model('customers', customerSchema)

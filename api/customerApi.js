@@ -34,13 +34,24 @@ module.exports = function (app) {
 
     app.get('/api/customer', function (req, res) {
         const customerMiddleware = new CustomerMiddleware();
-        customerMiddleware.getAll()
-            .then(function (response) {
-                res.status(200).json(response);
-            })
-            .catch(function (e) {
-                res.status(500).json(e);
-            });
+        if (req.headers.token) {
+            tokenHelper.validate(req.headers.token)
+                .then(function (validate) {
+                    if (validate) {
+                        customerMiddleware.getAll()
+                            .then(function (response) {
+                                res.status(200).json(response);
+                            })
+                            .catch(function (e) {
+                                res.status(500).json(e);
+                            });
+                    } else {
+                        res.status(403).json(responseFormat.error('invalid token!'));
+                    }
+                });
+        } else {
+            res.status(403).json(responseFormat.error('invalid token!'));
+        }
     });
 
     app.post('/api/customer', function (req, res) {

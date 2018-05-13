@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const app = express();
 const responseFormat = require('./helpers/responseFormatHelper');
 const tokenHelper = require('./helpers/tokenHelper');
+const config = require('./config');
 
 var admin = require("firebase-admin");
 
@@ -67,7 +68,7 @@ app.get('/api/firebase', function (req, res) {
 
 app.post('/api/authenticate', function (req, res) {
     if (config.user == req.body.user && config.pwd == req.body.pwd) {
-        const token = tokenHelper.create(app);
+        const token = tokenHelper.create(req.body.user);
         res.status(200).json({ success: true, message: 'Enjoy your token!', token: token });
         console.log('token:' + token);
     } else {

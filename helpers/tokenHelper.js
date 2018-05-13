@@ -6,14 +6,14 @@ var Q = require('q');
 
 class tokenHelper {
     static create(tokenData) {
-        return jwt.sign(tokenData, config.tokenSecret);
+        return jwt.sign(tokenData, config.tokenSecret, { expiresIn: '6h' });
     }
 
-    static validate(tokenData, token) {
+    static validate(token) {
         const defer = Q.defer();
         jwt.verify(token, config.tokenSecret, function (err, decoded) {
             if (err) {
-                defer.resolve(false);
+                defer.reject(false);
             } else {
                 defer.resolve(true);
             }
